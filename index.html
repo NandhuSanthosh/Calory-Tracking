@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">BiteBalance</a>
+            <a class="nav-link active" aria-current="page" href="#">Food Items</a>
+        </div>
+    </nav>
+
+    <main class="p-2 p-md-5">
+        <section>
+            <div class="container-fluid ">
+                <div class="d-flex flex-column gap-3">
+                    <p class="secondary-text">Your daily calories, carbs & protein in one place.</p>
+                    <h1 class="main-heading">Perfect Body Shape</h1>
+                    <!-- <h1 class="main-heading">Daily Nutrition Tracking</h1> -->
+                    <div class="d-flex gap-2 align-items-center">
+                        <i class="fa-solid fa-cheese" style="color: rgb(129, 129, 250)"></i>
+                        <p class="secondary-text">Every bite counts.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Current total attributes -->
+        <section class="mt-3 mt-md-5 px-md-5 summary">
+            <div class="bg-md-white rounded-3 py-3 shadow-md-lg position-relative">
+                <button class="position-absolute edit-button-container border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#goalFormModal">
+                    <i class="fa-regular fa-pen-to-square"></i>
+                </button>
+                <div class="container">
+                    <div class="row ">
+                        <!-- calories -->
+                        <div class="col-12 col-md-4 bg-white rounded-3 py-3 mb-2 mb-md-0 calories">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex flex-column target-card">
+                                    <div class="d-flex flex-column ps-4 gap-2">
+                                        <p class="target-card-title">Calories</p>
+                                        <div class="d-flex align-items-baseline gap-2">
+                                            <span class="curr-value">3465</span>
+                                            <span class="unit secondary-text">Cals</span>
+                                            / 
+                                            <span class="curr-value target-value">4465</span>
+                                            <span class="unit secondary-text">Cals</span>
+                                        </div>
+                                        <p class="target-info balance-text w-75 mt-1">
+                                            You need 
+                                            <span class="highlight-value balance-value">267</span> 
+                                            Cals more to reach today's target
+                                        </p>
+                                        <p class="target-info completed-text w-75 mt-1">
+                                            Target met for today
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="divider d-none d-md-block"></div>
+                            </div>
+                        </div>
+    
+                        <!-- protein -->
+                        <div class="col-12 col-md-4 bg-white rounded-3 py-3 mb-2 mb-md-0 protein">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex flex-column target-card">
+                                    <div class="d-flex flex-column ps-4 gap-2">
+                                        <p class="target-card-title">Protein</p>
+                                        <div class="d-flex align-items-baseline gap-2">
+                                            <span class="curr-value">81</span>
+                                            <span class="unit secondary-text">g</span>
+                                            / 
+                                            <span class="curr-value target-value">4465</span>
+                                            <span class="unit secondary-text">g</span>
+                                        </div>
+                                        <p class="target-info balance-text w-75 mt-1">
+                                            You need 
+                                            <span class="highlight-value balance-value">267</span> 
+                                            g more to reach today's target
+                                        </p>
+                                        <p class="target-info completed-text w-75 mt-1">
+                                            Target met for today
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="divider d-none d-md-block"></div>
+                            </div>
+                        </div>
+    
+                        <!-- carbs -->
+                        <div class="col-12 col-md-4 bg-white rounded-3 py-3 mb-2 mb-md-0 carbs">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex flex-column target-card">
+                                    <div class="d-flex flex-column ps-4 gap-2">
+                                        <p class="target-card-title">Carbs</p>
+                                        <div class="d-flex align-items-baseline gap-2">
+                                            <span class="curr-value">220</span>
+                                            <span class="unit secondary-text">g</span>
+                                            / 
+                                            <span class="curr-value target-value">4465</span>
+                                            <span class="unit secondary-text">g</span>
+                                        </div>
+                                        <p class="target-info balance-text w-75 mt-1">
+                                            You need 
+                                            <span class="highlight-value balance-value">267</span> 
+                                            g more to reach today's target
+                                        </p>
+                                        <p class="target-info completed-text w-75 mt-1">
+                                            Target met for today
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="mt-5">
+            <div class="container-fluid">
+                <div class="d-flex justify-content-between">
+                    <h1 class="sub-heading">Today's Diet</h1>
+                    <button type="button" class="btn btn-dark meal-add-button">
+                        Add Item
+                    </button>
+                </div>
+            </div>
+
+
+            <div class="container-fluid">
+                <div class="row meal-container pt-4">
+
+
+                    <div class="col-12 col-md-3 mb-3">
+                        <div class="meal-card gradient-red d-flex flex-column gap-3 rounded">
+                            <div>
+                                <span class="meal-type">Pre Workout</span>
+                            </div>
+                            <div>
+                                <span class="meal-item">Egg</span>
+                            </div>
+                            <div>
+                                <span class="meal-quantity">140 g</span>
+                            </div>
+                            <ul class="meal-property">
+                                <li>
+                                    <span>459 Cals</span>
+                                </li>
+                                <li>
+                                    <span>459 g Protine</span>
+                                </li>
+                                <li>
+                                    <span>459 g Carbs</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-3 mb-3">
+                        <div class="meal-card gradient-purple d-flex flex-column gap-3 rounded">
+                            <div>
+                                <span class="meal-type">Pre Workout</span>
+                            </div>
+                            <div>
+                                <span class="meal-item">Egg</span>
+                            </div>
+                            <div>
+                                <span class="meal-quantity">140 g</span>
+                            </div>
+                            <ul class="meal-property">
+                                <li>
+                                    <span>459 Cals</span>
+                                </li>
+                                <li>
+                                    <span>459 g Protine</span>
+                                </li>
+                                <li>
+                                    <span>459 g Carbs</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-3 mb-3">
+                        <div class="meal-card gradient-blue d-flex flex-column gap-3 rounded">
+                            <div>
+                                <span class="meal-type">Pre Workout</span>
+                            </div>
+                            <div>
+                                <span class="meal-item">Egg</span>
+                            </div>
+                            <div>
+                                <span class="meal-quantity">140 g</span>
+                            </div>
+                            <ul class="meal-property">
+                                <li>
+                                    <span>459 Cals</span>
+                                </li>
+                                <li>
+                                    <span>459 g Protine</span>
+                                </li>
+                                <li>
+                                    <span>459 g Carbs</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-3 mb-3">
+                        <div class="meal-card gradient-indigo d-flex flex-column gap-3 rounded">
+                            <div>
+                                <span class="meal-type">Pre Workout</span>
+                            </div>
+                            <div>
+                                <span class="meal-item">Egg</span>
+                            </div>
+                            <div>
+                                <span class="meal-quantity">140 g</span>
+                            </div>
+                            <ul class="meal-property">
+                                <li>
+                                    <span>459 Cals</span>
+                                </li>
+                                <li>
+                                    <span>459 g Protine</span>
+                                </li>
+                                <li>
+                                    <span>459 g Carbs</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- GOAL Modal -->
+    <div class="modal fade" id="goalFormModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form onsubmit="updateGoals(event)">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">
+                        Calories
+                        <span class="secondary-text goldModal-sublable">(in cals)</span>
+                    </label>
+                    <input name="calories" type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">
+                        Protein
+                        <span class="secondary-text goldModal-sublable">(in grams)</span>
+                    </label>
+                    <input name="protein" type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">
+                        Carbs
+                        <span class="secondary-text goldModal-sublable">(in grams)</span>
+                    </label>
+                    <input name="carbs" type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+        </div>
+    </div>
+    </div>
+
+    <script src="scripts.js"></script>
+    <script src="https://kit.fontawesome.com/981a38a7c9.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+</body>
+</html>

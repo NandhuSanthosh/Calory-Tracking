@@ -1,0 +1,24 @@
+{
+    "goals": {
+        "protein": {
+            "value": 100, 
+            "unit": "g"
+        }, 
+        "calories": {
+            "value": 4500, 
+            "unit": "Cals"
+        }, 
+        "carbs": {
+            "value": 400, 
+            "unit": "g"
+        }
+    }, 
+    "itemList": [{
+        "type": "pre-workout", 
+        "item": "Egg", 
+        "quantity": "100", 
+        "calories": "450", 
+        "carbs": "300", 
+        "protein": "6"
+    }]
+}
