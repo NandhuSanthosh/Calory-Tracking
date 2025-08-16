@@ -135,20 +135,27 @@ body {
     color: rgb(1, 107, 1);
 }
 
+.no-target .target-info{
+    color: rgb(164, 164, 164);
+}
+
 
 .target-info .highlight-value {
     font-weight: 600;
 }
 
-.reached .balance-text {
+.reached .balance-text,
+.no-target .balance-text {
+  display: none;
+}
+
+.completed-text, 
+.target-not-set-text {
     display: none;
 }
 
-.completed-text {
-    display: none;
-}
-
-.reached .completed-text {
+.reached .completed-text, 
+.no-target .target-not-set-text {
     display: block;
 }
 

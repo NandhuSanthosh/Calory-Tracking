@@ -16,8 +16,6 @@ const defaultData = {
 let data = localStorageData ? JSON.parse(localStorageData) : defaultData;
 updateTarget();
 updateMealList();
-console.log(data)
-
 
 // modal form prefill function attaching
 const myModal = document.getElementById('goalFormModal');
@@ -29,9 +27,15 @@ if(myModal) {
 
         const { calories, protein, carbs} = data.goals
 
-        caloryField.value = calories; 
-        proteinField.value = protein;
-        carbField.value = carbs;
+        if(parseInt(calories)) {
+            caloryField.value = calories; 
+        }
+        if(parseInt(protein)) {
+            proteinField.value = protein;
+        }    
+        if(parseInt(carbs)) {
+            carbField.value = carbs;
+        }
     });
 }
 
@@ -125,11 +129,16 @@ function updateTarget() {
 
     // update summary section data helper function
     function updateSummary(target, current, component) {
-        if(target <= current) {
+        if(target == 0) {
+            component.classList.add('no-target')
+            component.classList.remove('reached')
+        }
+        else if(target <= current) {
             component.classList.add('reached')
+            component.classList.remove('no-target')
         }
         else {
-            component.classList.remove('reached')
+            component.classList.remove('reached', 'no-target')
             component.querySelector('.balance-value').innerHTML = target - current
         }
         component.querySelector('.curr-value').innerHTML = current
@@ -139,7 +148,6 @@ function updateTarget() {
 
 // update data in localstorage
 function updateData(newData) {
-    console.log(newData)
     localStorage.setItem("data", JSON.stringify(newData))
 }
 
@@ -148,13 +156,28 @@ function updateMealList() {
     mealListContainer.innerHTML = "";
 
     data.itemList.forEach( (curr) => {
-        console.log(curr)
+        const gradientClasses = [
+            "gradient-red", 
+            "gradient-purple", 
+            "gradient-blue", 
+            "gradient-indigo"
+        ]
+
+        const types = {
+            "pre-workout": "Pre-workout", 
+            "post-workout": "Post-workout", 
+            "breakfast": "Breakfast", 
+            "evening": "Evening",
+            "dinner": "Dinner",
+            "additional": "Additional"
+        }
+
         const container = document.createElement('div');
         container.classList.add('col-12', 'col-md-3', 'mb-3')
         
         let currTemplate = getMealCardTemplate(); 
-        currTemplate = currTemplate.replace('{{gradient-class}}', 'gradient-red')
-        currTemplate = currTemplate.replace('{{type}}', curr.type)
+        currTemplate = currTemplate.replace('{{gradient-class}}', gradientClasses[getRandom0to3()])
+        currTemplate = currTemplate.replace('{{type}}', types[curr.type])
         currTemplate = currTemplate.replace('{{item}}', curr.item)
         currTemplate = currTemplate.replace('{{quantity}}', curr.quantity)
         currTemplate = currTemplate.replace('{{calories}}', curr.calories)
@@ -165,6 +188,10 @@ function updateMealList() {
         mealListContainer.append(container)
     })
 
+}
+
+function getRandom0to3() {
+  return Math.floor(Math.random() * 4); 
 }
 
 // return the template of the meal card
