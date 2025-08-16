@@ -208,7 +208,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form onsubmit="addMeal(event)">
+                <form onsubmit="addMeal(event)" id="meal-form">
+                    <input type="hidden" id="recordId_forEdit" name="recordId" value="0">
 
                     <div class="mb-3">
                         <label for="type" class="form-label">
@@ -216,7 +217,7 @@
                         </label>
                         <div class="input-group mb-3">
                             <select name="type" class="form-select" id="inputGroupSelect02">
-                                <option selected>Select Type</option>
+                                <option value="">Select Type</option>
                                 <option value="pre-workout">Pre-workout</option>
                                 <option value="post-workout">Post-workout</option>
                                 <option value="breakfast">Breakfast</option>

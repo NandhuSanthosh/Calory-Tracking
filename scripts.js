@@ -1,3 +1,10 @@
+const gradientClasses = [
+    "gradient-red", 
+    "gradient-purple", 
+    "gradient-blue", 
+    "gradient-indigo"
+]
+
 // fetching data from localStorage
 let localStorageData = localStorage.getItem("data");
 const defaultData = {
@@ -41,25 +48,44 @@ if(myModal) {
 
 
 const mealModal = document.getElementById('mealFormModal');
-
+if(myModal) {
+    mealModal.addEventListener('show.bs.modal', function () {
+        updateForm();
+    });
+}
 
 // add meal function
 function addMeal(e)  {
     e.preventDefault();
-    
+
     const formElement = e.target;
 
     const values = {
-        id: new Date(),
+        // id: new Date().getTime(),
+        id: formElement.recordId.value,
         type: formElement.type.value || 0,
         item: formElement.item.value || 0,
         quantity: formElement.quantity.value || 0, 
         calories: formElement.calories.value || 0, 
         carbs: formElement.carbs.value || 0, 
-        protein: formElement.protein.value || 0
+        protein: formElement.protein.value || 0, 
+        gradientClass: gradientClasses[getRandom0to3()]
     } 
 
-    data.itemList.push(values);
+    if(values.id) {
+        data.itemList = data.itemList.map( curr => {
+            console.log(curr.id, values.id)
+            if(curr.id == values.id) {
+                return values;
+            }
+            return curr;
+        })
+    }
+    else {
+        values.id = new Date().getTime();
+        data.itemList.push(values);
+    }
+
     data.current = data.itemList.reduce( (acc, curr) => ({
         protein: parseInt(acc.protein) + parseInt(curr.protein), 
         carbs: parseInt(acc.carbs) + parseInt(curr.carbs), 
@@ -81,6 +107,30 @@ function addMeal(e)  {
     }
 }
 
+// edit meal handler
+function editMeal(record) {
+    const idField = document.getElementById('recordId_forEdit');
+    idField.value = record.id
+    if(mealModal) {
+        const modal = bootstrap.Modal.getInstance(mealModal) || new bootstrap.Modal(mealModal);
+        modal.show();
+        updateForm(record)
+    }
+}
+
+// prefill or remove meal form fields
+function updateForm(record) {
+    const form = document.getElementById('meal-form');
+    if(form) {
+        form.querySelector('input[name="recordId"]').value = record?.id || "";
+        form.querySelector('select[name="type"]').value = record?.type || "";
+        form.querySelector('input[name="item"]').value = record?.item || "";
+        form.querySelector('input[name="quantity"]').value = record?.quantity || "";
+        form.querySelector('input[name="calories"]').value = record?.calories || "";
+        form.querySelector('input[name="protein"]').value = record?.protein || "";
+        form.querySelector('input[name="carbs"]').value = record?.carbs || "";
+    }
+}
 
 // update goals form submit handler
 function updateGoals(e) {
@@ -156,12 +206,7 @@ function updateMealList() {
     mealListContainer.innerHTML = "";
 
     data.itemList.forEach( (curr) => {
-        const gradientClasses = [
-            "gradient-red", 
-            "gradient-purple", 
-            "gradient-blue", 
-            "gradient-indigo"
-        ]
+        
 
         const types = {
             "pre-workout": "Pre-workout", 
@@ -176,7 +221,7 @@ function updateMealList() {
         container.classList.add('col-12', 'col-md-3', 'mb-3')
         
         let currTemplate = getMealCardTemplate(); 
-        currTemplate = currTemplate.replace('{{gradient-class}}', gradientClasses[getRandom0to3()])
+        currTemplate = currTemplate.replace('{{gradient-class}}', curr.gradientClass)
         currTemplate = currTemplate.replace('{{type}}', types[curr.type])
         currTemplate = currTemplate.replace('{{item}}', curr.item)
         currTemplate = currTemplate.replace('{{quantity}}', curr.quantity)
@@ -185,6 +230,12 @@ function updateMealList() {
         currTemplate = currTemplate.replace('{{carbs}}', curr.carbs)
 
         container.innerHTML = currTemplate
+        
+        const updateButton = container.querySelector('.meal-update-button');
+        updateButton.addEventListener("click", () => {
+            editMeal(curr)
+        })
+
         mealListContainer.append(container)
     })
 
@@ -200,8 +251,13 @@ function getRandom0to3() {
 function getMealCardTemplate () {
     return `
             <div class="meal-card {{gradient-class}} d-flex flex-column gap-3 rounded">
-                <div>
-                    <span class="meal-type">{{type}}</span>
+                <div class="d-flex justify-content-between align-items-center" >
+                    <div>
+                        <span class="meal-type">{{type}}</span>
+                    </div>
+                    <button class="border-0 bg-transparent meal-update-button">
+                        <i class="fa-regular fa-pen-to-square" style="color: white"></i>
+                    </button>
                 </div>
                 <div>
                     <span class="meal-item">{{item}}</span>
