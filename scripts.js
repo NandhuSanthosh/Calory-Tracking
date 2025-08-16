@@ -65,6 +65,8 @@ function addMeal(e)  {
 
     const formElement = e.target;
 
+    const gradientIndex = getRandom0to8();
+    console.log(gradientIndex, gradientClasses[gradientIndex])
     const values = {
         // id: new Date().getTime(),
         id: formElement.recordId.value,
@@ -74,12 +76,11 @@ function addMeal(e)  {
         calories: formElement.calories.value || 0, 
         carbs: formElement.carbs.value || 0, 
         protein: formElement.protein.value || 0, 
-        gradientClass: gradientClasses[getRandom0to9()]
+        gradientClass: gradientClasses[gradientIndex]
     } 
 
     if(values.id) {
         data.itemList = data.itemList.map( curr => {
-            console.log(curr.id, values.id)
             if(curr.id == values.id) {
                 return values;
             }
@@ -110,6 +111,7 @@ function addMeal(e)  {
         const modal = bootstrap.Modal.getInstance(mealModal) || new bootstrap.Modal(mealModal);
         modal.hide();
     }
+    trigerToast("Meal Updated", "Your meal details have been saved successfully.")
 }
 
 // edit meal handler
@@ -121,6 +123,15 @@ function editMeal(record) {
         modal.show();
         updateForm(record)
     }
+}
+
+// clear meal list handler
+function resetMealList() {
+    data.itemList = [];
+    data.current = defaultData.current;
+    updateData(data)
+    updateTarget();
+    updateMealList();
 }
 
 // prefill or remove meal form fields
@@ -169,6 +180,7 @@ function updateGoals(e) {
         const modal = bootstrap.Modal.getInstance(myModal) || new bootstrap.Modal(myModal);
         modal.hide();
     }
+    trigerToast("Goal Updated", "Your daily target has been successfully updated.")
 }
 
 // udpate summary section data
@@ -210,44 +222,48 @@ function updateMealList() {
     const mealListContainer = document.querySelector("#meal-list-container");
     mealListContainer.innerHTML = "";
 
-    data.itemList.forEach( (curr) => {
-        
-
-        const types = {
-            "pre-workout": "Pre-workout", 
-            "post-workout": "Post-workout", 
-            "breakfast": "Breakfast", 
-            "evening": "Evening",
-            "dinner": "Dinner",
-            "additional": "Additional"
-        }
-
-        const container = document.createElement('div');
-        container.classList.add('col-12', 'col-md-3', 'mb-3')
-        
-        let currTemplate = getMealCardTemplate(); 
-        currTemplate = currTemplate.replace('{{gradient-class}}', curr.gradientClass)
-        currTemplate = currTemplate.replace('{{type}}', types[curr.type])
-        currTemplate = currTemplate.replace('{{item}}', curr.item)
-        currTemplate = currTemplate.replace('{{quantity}}', curr.quantity)
-        currTemplate = currTemplate.replace('{{calories}}', curr.calories)
-        currTemplate = currTemplate.replace('{{protein}}', curr.protein)
-        currTemplate = currTemplate.replace('{{carbs}}', curr.carbs)
-
-        container.innerHTML = currTemplate
-        
-        const updateButton = container.querySelector('.meal-update-button');
-        updateButton.addEventListener("click", () => {
-            editMeal(curr)
+    if(data.itemList.length) {
+        data.itemList.forEach( (curr) => {
+            const types = {
+                "pre-workout": "Pre-workout", 
+                "post-workout": "Post-workout", 
+                "breakfast": "Breakfast", 
+                "evening": "Evening",
+                "dinner": "Dinner",
+                "additional": "Additional"
+            }
+    
+            const container = document.createElement('div');
+            container.classList.add('col-12', 'col-md-3', 'mb-3')
+            
+            let currTemplate = getMealCardTemplate(); 
+            currTemplate = currTemplate.replace('{{gradient-class}}', curr.gradientClass)
+            currTemplate = currTemplate.replace('{{type}}', types[curr.type])
+            currTemplate = currTemplate.replace('{{item}}', curr.item)
+            currTemplate = currTemplate.replace('{{quantity}}', curr.quantity)
+            currTemplate = currTemplate.replace('{{calories}}', curr.calories)
+            currTemplate = currTemplate.replace('{{protein}}', curr.protein)
+            currTemplate = currTemplate.replace('{{carbs}}', curr.carbs)
+    
+            container.innerHTML = currTemplate
+            
+            const updateButton = container.querySelector('.meal-update-button');
+            updateButton.addEventListener("click", () => {
+                editMeal(curr)
+            })
+    
+            mealListContainer.append(container)
         })
+    }
+    else {
+        mealListContainer.innerHTML = noDataTemplate();
+    }
 
-        mealListContainer.append(container)
-    })
 
 }
 
-function getRandom0to9() {
-  return Math.floor(Math.random() * 10); 
+function getRandom0to8() {
+  return Math.floor(Math.random() * 8); 
 }
 
 // return the template of the meal card
@@ -284,6 +300,33 @@ function getMealCardTemplate () {
             </div>
     `
 } 
+
+function noDataTemplate() {
+    return `
+        <div class="on-data-container d-flex flex-column align-items-center mt-3 mt-md-5 gap-2">
+            <p class="no-data-title">Let’s Get Started!</p>
+            <p class="no-data-message w-75 text-center">Looks like you haven’t added any meals. Add one now to see your progress.</p>
+        </div>
+    `
+}
+
+
+const toast = document.getElementById('liveToast')
+
+// create toast
+function trigerToast(title, message) {
+    if(!message) return;
+
+    if (toast) {
+        const toastContainer = document.querySelector('.toast-container');
+        toastContainer.querySelector('.toast-title').innerHTML = title || "Notification"; 
+        toastContainer.querySelector('.toast-body').innerHTML = message || ""; 
+        
+        const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toast)
+        toastBootstrap.show()
+    }
+
+}
 
 
 

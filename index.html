@@ -13,7 +13,7 @@
 </head>
 <body>
     
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg px-2 px-md-5 mt-2 mt-md-3">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">BiteBalance</a>
             <a class="nav-link active" aria-current="page" href="#" onclick="alert('This feature is coming soon!')">Food Items</a>
@@ -64,7 +64,7 @@
                                         <p class="target-info completed-text w-75 mt-1">
                                             Target met for today
                                         </p>
-                                        <p class="target-info target-not-set-text w-75 mt-1">
+                                        <p class="target-info target-not-set-text mt-1">
                                             No target set for today
                                         </p>
                                     </div>
@@ -76,7 +76,7 @@
                         <!-- protein -->
                         <div class="col-12 col-md-4 bg-white rounded-3 py-3 mb-2 mb-md-0 protein">
                             <div class="d-flex justify-content-between align-items-center">
-                                <div class="d-flex flex-column target-card">
+                                <div class="d-flex flex-column w-100 target-card">
                                     <div class="d-flex flex-column ps-4 gap-2">
                                         <p class="target-card-title">Protein</p>
                                         <div class="d-flex align-items-baseline gap-2">
@@ -106,7 +106,7 @@
                         <!-- carbs -->
                         <div class="col-12 col-md-4 bg-white rounded-3 py-3 mb-2 mb-md-0 carbs">
                             <div class="d-flex justify-content-between align-items-center">
-                                <div class="d-flex flex-column target-card">
+                                <div class="d-flex flex-column w-100 target-card">
                                     <div class="d-flex flex-column ps-4 gap-2">
                                         <p class="target-card-title">Carbs</p>
                                         <div class="d-flex align-items-baseline gap-2">
@@ -138,14 +138,19 @@
             </div>
         </section>
 
-
+        <!-- Meal List -->
         <section class="mt-5">
             <div class="container-fluid">
                 <div class="d-flex justify-content-between">
                     <h1 class="sub-heading">Today's Diet</h1>
-                    <button type="button" class="btn btn-dark meal-add-button" data-bs-toggle="modal" data-bs-target="#mealFormModal">
-                        Add Item
-                    </button>
+                    <div>
+                        <button type="button" class="btn btn-dark meal-add-button" data-bs-toggle="modal" data-bs-target="#mealFormModal">
+                            Add Item
+                        </button>
+                        <button type="button" class="btn btn-dark meal-add-button" data-bs-toggle="modal" data-bs-target="#reset-meal-list-modal">
+                            Reset
+                        </button>
+                    </div>
                 </div>
             </div>
 
@@ -271,6 +276,40 @@
             </div>
         </div>
     </div>
+
+    <!-- Reset alert modal -->
+    <div class="modal" tabindex="-1" id="reset-meal-list-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Reset Meal List</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>This will remove all meals from your list. Do you want to continue?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="resetMealList()">Clear List</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+     <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+            <strong class="me-auto toast-title">
+                <!-- injected by js -->
+            </strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body toast-body">
+                <!-- injected by js -->
+            </div>
+        </div>
+        </div>
 
     <script src="scripts.js"></script>
     <script src="https://kit.fontawesome.com/981a38a7c9.js" crossorigin="anonymous"></script>

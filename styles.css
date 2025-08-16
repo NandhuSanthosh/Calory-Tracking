@@ -101,6 +101,11 @@ body {
     font-size: 2rem;
 }
 
+.sub-heading {
+  font-weight: 500;
+  font-size: 20px;
+}
+
 
 /* ==== Target Card ==== */
 .edit-button-container {
@@ -190,6 +195,16 @@ body {
   position: absolute;
   top: 0; 
   right: 0;
+}
+
+.no-data-title{
+  font-size: 22px;
+  font-weight: 500;
+  color: rgb(133, 133, 133);
+}
+.no-data-message{
+  /* font-size: 18px;  */
+  color: rgb(133, 133, 133);
 }
 /* ==== Food Listing ==== */
 
