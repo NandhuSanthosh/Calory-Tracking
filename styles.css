@@ -213,9 +213,28 @@ body {
   background: linear-gradient(135deg, #00c6ff, #0072ff);
 }
 
-.gradient-indigo {
-  background: linear-gradient(135deg, #6a11cb, #2575fc);
+.gradient-green {
+  background: linear-gradient(135deg, #56ab2f, #a8e063);
 }
 
+.gradient-teal {
+  background: linear-gradient(135deg, #11998e, #38ef7d);
+}
+
+.gradient-pink {
+  background: linear-gradient(135deg, #ff6a88, #ff99ac);
+}
+
+.gradient-cyan {
+  background: linear-gradient(135deg, #00d2ff, #3a7bd5);
+}
+
+.gradient-gold {
+  background: linear-gradient(135deg, #f7971e, #ffd200);
+}
+
+.gradient-dark {
+  background: linear-gradient(135deg, #232526, #414345);
+}
 
 

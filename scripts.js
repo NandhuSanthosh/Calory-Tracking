@@ -2,7 +2,12 @@ const gradientClasses = [
     "gradient-red", 
     "gradient-purple", 
     "gradient-blue", 
-    "gradient-indigo"
+    "gradient-green",
+    "gradient-teal",
+    "gradient-pink",
+    "gradient-cyan",
+    "gradient-gold",
+    "gradient-dark",
 ]
 
 // fetching data from localStorage
@@ -69,7 +74,7 @@ function addMeal(e)  {
         calories: formElement.calories.value || 0, 
         carbs: formElement.carbs.value || 0, 
         protein: formElement.protein.value || 0, 
-        gradientClass: gradientClasses[getRandom0to3()]
+        gradientClass: gradientClasses[getRandom0to9()]
     } 
 
     if(values.id) {
@@ -241,8 +246,8 @@ function updateMealList() {
 
 }
 
-function getRandom0to3() {
-  return Math.floor(Math.random() * 4); 
+function getRandom0to9() {
+  return Math.floor(Math.random() * 10); 
 }
 
 // return the template of the meal card
