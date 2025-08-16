@@ -16,7 +16,7 @@
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">BiteBalance</a>
-            <a class="nav-link active" aria-current="page" href="#">Food Items</a>
+            <a class="nav-link active" aria-current="page" href="#" onclick="alert('This feature is coming soon!')">Food Items</a>
         </div>
     </nav>
 
@@ -134,160 +134,132 @@
             <div class="container-fluid">
                 <div class="d-flex justify-content-between">
                     <h1 class="sub-heading">Today's Diet</h1>
-                    <button type="button" class="btn btn-dark meal-add-button">
+                    <button type="button" class="btn btn-dark meal-add-button" data-bs-toggle="modal" data-bs-target="#mealFormModal">
                         Add Item
                     </button>
                 </div>
             </div>
 
 
-            <div class="container-fluid">
-                <div class="row meal-container pt-4">
-
-
-                    <div class="col-12 col-md-3 mb-3">
-                        <div class="meal-card gradient-red d-flex flex-column gap-3 rounded">
-                            <div>
-                                <span class="meal-type">Pre Workout</span>
-                            </div>
-                            <div>
-                                <span class="meal-item">Egg</span>
-                            </div>
-                            <div>
-                                <span class="meal-quantity">140 g</span>
-                            </div>
-                            <ul class="meal-property">
-                                <li>
-                                    <span>459 Cals</span>
-                                </li>
-                                <li>
-                                    <span>459 g Protine</span>
-                                </li>
-                                <li>
-                                    <span>459 g Carbs</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-md-3 mb-3">
-                        <div class="meal-card gradient-purple d-flex flex-column gap-3 rounded">
-                            <div>
-                                <span class="meal-type">Pre Workout</span>
-                            </div>
-                            <div>
-                                <span class="meal-item">Egg</span>
-                            </div>
-                            <div>
-                                <span class="meal-quantity">140 g</span>
-                            </div>
-                            <ul class="meal-property">
-                                <li>
-                                    <span>459 Cals</span>
-                                </li>
-                                <li>
-                                    <span>459 g Protine</span>
-                                </li>
-                                <li>
-                                    <span>459 g Carbs</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-md-3 mb-3">
-                        <div class="meal-card gradient-blue d-flex flex-column gap-3 rounded">
-                            <div>
-                                <span class="meal-type">Pre Workout</span>
-                            </div>
-                            <div>
-                                <span class="meal-item">Egg</span>
-                            </div>
-                            <div>
-                                <span class="meal-quantity">140 g</span>
-                            </div>
-                            <ul class="meal-property">
-                                <li>
-                                    <span>459 Cals</span>
-                                </li>
-                                <li>
-                                    <span>459 g Protine</span>
-                                </li>
-                                <li>
-                                    <span>459 g Carbs</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-md-3 mb-3">
-                        <div class="meal-card gradient-indigo d-flex flex-column gap-3 rounded">
-                            <div>
-                                <span class="meal-type">Pre Workout</span>
-                            </div>
-                            <div>
-                                <span class="meal-item">Egg</span>
-                            </div>
-                            <div>
-                                <span class="meal-quantity">140 g</span>
-                            </div>
-                            <ul class="meal-property">
-                                <li>
-                                    <span>459 Cals</span>
-                                </li>
-                                <li>
-                                    <span>459 g Protine</span>
-                                </li>
-                                <li>
-                                    <span>459 g Carbs</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+            <div class="container-fluid" >
+                <div class="row meal-container pt-4" id="meal-list-container">
+                    <!-- content will be dynamically added from js -->
                 </div>
             </div>
         </section>
     </main>
 
     <!-- GOAL Modal -->
-    <div class="modal fade" id="goalFormModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <form onsubmit="updateGoals(event)">
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">
-                        Calories
-                        <span class="secondary-text goldModal-sublable">(in cals)</span>
-                    </label>
-                    <input name="calories" type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">
-                        Protein
-                        <span class="secondary-text goldModal-sublable">(in grams)</span>
-                    </label>
-                    <input name="protein" type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">
-                        Carbs
-                        <span class="secondary-text goldModal-sublable">(in grams)</span>
-                    </label>
-                    <input name="carbs" type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
-                </div>
-            </form>
-        </div>
+    <div class="modal fade" id="goalFormModal" tabindex="-1" aria-labelledby="goalFormModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Update Goal</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form onsubmit="updateGoals(event)">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">
+                            Calories
+                            <span class="secondary-text goldModal-sublable">(in cals)</span>
+                        </label>
+                        <input name="calories" type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">
+                            Protein
+                            <span class="secondary-text goldModal-sublable">(in grams)</span>
+                        </label>
+                        <input name="protein" type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">
+                            Carbs
+                            <span class="secondary-text goldModal-sublable">(in grams)</span>
+                        </label>
+                        <input name="carbs" type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+            </div>
         </div>
     </div>
+
+    <!-- MEAL Modal -->
+    <div class="modal fade" id="mealFormModal" tabindex="-1" aria-labelledby="mealFormModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Add/Update Meal</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form onsubmit="addMeal(event)">
+
+                    <div class="mb-3">
+                        <label for="type" class="form-label">
+                            Type
+                        </label>
+                        <div class="input-group mb-3">
+                            <select name="type" class="form-select" id="inputGroupSelect02">
+                                <option selected>Select Type</option>
+                                <option value="pre-workout">Pre-workout</option>
+                                <option value="post-workout">Post-workout</option>
+                                <option value="breakfast">Breakfast</option>
+                                <option value="evening">Evening</option>
+                                <option value="dinner">Dinner</option>
+                                <option value="additional">Additional</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="item" class="form-label">
+                            Item
+                        </label>
+                        <input name="item" type="text" class="form-control" aria-describedby="item">
+                    </div>
+                    <div class="mb-3">
+                        <label for="quantity" class="form-label">
+                            Quantity
+                            <span class="secondary-text goldModal-sublable">(in grams)</span>
+                        </label>
+                        <input name="quantity" type="number" class="form-control" aria-describedby="quantity">
+                    </div>
+                    <div class="mb-3">
+                        <label for="calories" class="form-label">
+                            Calories
+                            <span class="secondary-text goldModal-sublable">(in cals)</span>
+                        </label>
+                        <input name="calories" type="number" class="form-control" aria-describedby="calories">
+                    </div>
+                    <div class="mb-3">
+                        <label for="protein" class="form-label">
+                            Protein
+                            <span class="secondary-text goldModal-sublable">(in grams)</span>
+                        </label>
+                        <input name="protein" type="number" class="form-control" aria-describedby="protein">
+                    </div>
+                    <div class="mb-3">
+                        <label for="carbs" class="form-label">
+                            Carbs
+                            <span class="secondary-text goldModal-sublable">(in grams)</span>
+                        </label>
+                        <input name="carbs" type="number" class="form-control" aria-describedby="carbs">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+            </div>
+        </div>
     </div>
 
     <script src="scripts.js"></script>
